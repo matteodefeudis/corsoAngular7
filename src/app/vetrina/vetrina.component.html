@@ -12,6 +12,7 @@
       <div class="card m-1" *ngFor="let prodotto of prodotti">
         <div class="card-header">{{prodotto.nome}}</div>
         <div class="card-body">{{prodotto.descrizione}}
+          <button class="btn btn-primary" (click)="carrello.aggiungiAlCarrello(prodotto)">Acquista</button>
           <span class="float-right">{{prodotto.prezzo | currency:'€'}}</span>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Prodotto } from '../model/prodotto';
 import { ProdottiService } from '../model/prodotti.service';
+import { Carrello } from '../model/carrello';
 
 @Component({
   selector: 'app-vetrina',
@@ -17,8 +18,11 @@ export class VetrinaComponent implements OnInit {
     {id:5,nome:'iPhone XS',categoria:'Smartphone',prezzo:1000,descrizione:'Ultimo modello di Apple'}
   ];*/
 
-  constructor(private prodottiService : ProdottiService) { }
-
+  constructor(
+    private prodottiService : ProdottiService,
+    public carrello : Carrello
+    ) { }
+    
   categoriaSelezionata : string;
 
   get prodotti() : Prodotto[]{
