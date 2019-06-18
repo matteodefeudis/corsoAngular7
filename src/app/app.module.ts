@@ -2,13 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { VetrinaComponent } from './vetrina/vetrina.component';
+import { PersistenceModule } from './model/persistence.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VetrinaComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    PersistenceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
