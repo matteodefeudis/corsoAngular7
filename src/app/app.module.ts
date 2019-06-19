@@ -10,6 +10,7 @@ import { RouterModule, Route } from '@angular/router'
 const routes : Route[] = [
   {path:'vetrina',component:VetrinaComponent},
   {path:'dettaglio-carrello', component:DettaglioCarrelloComponent},
+  {path:'admin', loadChildren:'./admin/admin.module#AdminModule'},
   {path:'**', redirectTo:'/vetrina'}
 ];
 

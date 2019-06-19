@@ -1,0 +1,86 @@
+{
+  "prodotti": [
+    {
+      "id": 1,
+      "nome": "Il Nome della Rosa",
+      "categoria": "Libri",
+      "prezzo": 10,
+      "descrizione": "Best Seller di Umberto Eco"
+    },
+    {
+      "id": 2,
+      "nome": "La Divina Commedia",
+      "categoria": "Libri",
+      "prezzo": 200,
+      "descrizione": "Best Seller di Dante Alighieri"
+    },
+    {
+      "id": 3,
+      "nome": "L'Attimo fuggente",
+      "categoria": "Film",
+      "prezzo": 20,
+      "descrizione": "Film con Robin Williams"
+    },
+    {
+      "id": 4,
+      "nome": "La Pantera Rosa",
+      "categoria": "Film",
+      "prezzo": 10,
+      "descrizione": "Film commedia"
+    },
+    {
+      "id": 5,
+      "nome": "iPhone XS",
+      "categoria": "Smartphone",
+      "prezzo": 1000,
+      "descrizione": "Ultimo modello di Apple"
+    },
+    {
+      "id": 6,
+      "nome": "iPhone XR",
+      "categoria": "Smartphone",
+      "prezzo": 800,
+      "descrizione": "Modello colorato"
+    },
+    {
+      "nome": "Nokia 3310",
+      "descrizione": "evergreen",
+      "categoria": "Smartphone",
+      "prezzo": 100,
+      "id": 7
+    },
+    {
+      "nome": "L'Alchimista",
+      "descrizione": "Beste Seller di Paulo Coelho",
+      "categoria": "Libri",
+      "prezzo": 20,
+      "id": 8
+    },
+    {
+      "nome": "Le Valchirie",
+      "descrizione": "Best seller di Paulo Coelho",
+      "categoria": "Libri",
+      "prezzo": 20,
+      "id": 9
+    },
+    {
+      "nome": "Le Valchirie 2",
+      "descrizione": "Best seller di Paulo Coelho",
+      "categoria": "Libri",
+      "prezzo": 20,
+      "id": 10
+    },
+    {
+      "nome": "Prova",
+      "descrizione": "prova",
+      "categoria": "Smartphone",
+      "prezzo": 100,
+      "id": 11
+    }
+  ],
+  "categorie": [
+    "Libri",
+    "Film",
+    "Smartphone"
+  ]
+}

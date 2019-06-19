@@ -21,7 +21,11 @@ export class VetrinaComponent implements OnInit {
   constructor(
     private prodottiService : ProdottiService,
     public carrello : Carrello
-    ) { }
+  ) { }
+
+    ngOnInit() {
+      this.prodottiService.loadProdotti();
+    }
     
   categoriaSelezionata : string;
 
@@ -31,9 +35,6 @@ export class VetrinaComponent implements OnInit {
 
   get categorie() : string[]{
     return this.prodottiService.getCategorie();
-  }
-
-  ngOnInit() {
   }
 
 }

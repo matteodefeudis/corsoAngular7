@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <table class="table table-striped">
+        <tr>
+          <th>Prodotto</th>
+          <th>Modifica</th>
+          <th>Cancella</th>
+        </tr>
+        <tr *ngFor="let prod of prodotti">
+          <td>{{prod.nome}}</td>
+          <td><button (click)="modifica(prod)">Modifica</button></td>
+          <td><button>Cancella</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

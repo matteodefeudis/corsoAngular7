@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 offset-1">
+
+      <h2>Inserisci le credenziali</h2>
+      <div *ngIf="messaggio" class="alert-danger">{{messaggio}}</div>
+
+      <form name="formLogin" #formLogin="ngForm" novalidate (submit)="accedi()">
+        <div class="form-group">
+          <label>Username</label>
+          <input class="form-control" required name="username" #username="ngModel" [(ngModel)]="user">
+          <div *ngIf="username.dirty && username.invalid" class="alert-danger">Inserire la username!</div>
+          <label>Password</label>
+          <input type="password" required class="form-control" name="password" #password="ngModel" [(ngModel)]="pass">
+          <div *ngIf="password.dirty && password.invalid" class="alert-danger">Inserire la password!</div>
+        </div>
+        <button class="btn btn-warning" [disabled]="formLogin.invalid">Accedi</button>
+      </form>
+      
+    </div>
+  </div>
+</div>
