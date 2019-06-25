@@ -1,56 +1,43 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-2 offset-1">
-        <button class="btn btn-primary btn-block" (click)="categoriaSelezionata = null">Tutte le categorie</button>
-        <button class="btn btn-primary btn-block" 
-          (click)="categoriaSelezionata = categoria"
-          *ngFor="let categoria of categorie">
-          {{categoria}}
+<mat-toolbar>
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="categoriaMenu">Categorie</button>
+        <button mat-menu-item>Amministrazione</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="appMenu">
+        Menu
+    </button>
+
+    <mat-menu #categoriaMenu="matMenu">
+        <button mat-menu-item (click)="categoriaSelezionata = null">
+            Tutte
         </button>
-      </div>
-      <div class="col-8">
-        <div class="card m-1" *ngFor="let prodotto of prodotti">
-          <div class="card-header" [appEvidenzia]="prodotto.prezzo<50?'green':'red'"
-          coloreMouseOver="silver">{{prodotto.nome}}</div>
-          <div class="card-body">{{prodotto.descrizione | appIfNull: prodotto.nome}}
-            <button class="btn btn-primary" (click)="carrello.aggiungiAlCarrello(prodotto)">Acquista</button>
-            <span class="float-right">{{prodotto.prezzo | currency:'€'}}</span>
-            <!-- <span class="float-right">{{prodotto.prezzo | appPercentuale:90 | currency:'€'}}</span> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <button mat-menu-item *ngFor="let cat of categorie" (click)="categoriaSelezionata = cat">{{cat}}</button>
+    </mat-menu>
+    <span>Mio Negozio</span>
+    <span style="flex: 11 auto"></span>
+    <button mat-raised-button [matBadge]="carrello.numeroArticoli" routerLink="/dettaglio-carrello">Carrello</button>
+</mat-toolbar>
 
-<hr>
+<mat-card *ngFor="let prodotto of getProdottiPaginati()">
+    <mat-card-header>
+        <mat-card-title>
+            {{prodotto.nome}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{prodotto.prezzo | currency: 'EUR'}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        {{prodotto.descrizione}}
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="carrello.aggiungiAlCarrello(prodotto)">Aggiungi</button>
+    </mat-card-actions>
+</mat-card>
 
-<!-- utilizzo esplicito della direttiva appLoop-->
-<ng-template appLoop [appLoopOf]="prodotti" let-prodotto let-i="index" let-e="even" [appLoopOrderBy]="confrontaPerPrezzo">
-  <!-- prodotto è il $implicit del LoopContext
-       i è l'indice di ciclo
-  -->
-  <div [style.backgroundColor]="e ? 'grey' : 'pink'">
-    Prodotto {{i}}:
-    {{prodotto.nome}}
-    {{e}}
-  </div>
-  <div>
-    {{prodotto.prezzo | currency:'EUR'}}
-  </div>
-</ng-template>
-
-<!-- utilizzo semplificato tramite * -->
-<hr>
-
-<div *appLoop="let prodotto of prodotti; let i = index; let e = even; orderBy : confrontaPerPrezzo">
-    <div [style.backgroundColor]="e ? 'grey' : 'pink'">
-        Prodotto {{i}}:
-        {{prodotto.nome}}
-      </div>
-      <div>
-        {{prodotto.prezzo | currency:'EUR'}}
-      </div>
-</div>
-
-<hr>
-
+<mat-paginator [length]="prodotti.length" 
+               [pageSize]="3" 
+               [pageSizeOptions]="[3,5,10]"
+               (page)="gestisciPaginazione($event)">
+</mat-paginator>

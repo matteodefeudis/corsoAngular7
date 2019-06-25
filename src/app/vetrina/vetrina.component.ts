@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Prodotto } from '../model/prodotto';
 import { ProdottiService } from '../model/prodotti.service';
 import { Carrello } from '../model/carrello';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-vetrina',
@@ -39,6 +40,23 @@ export class VetrinaComponent implements OnInit {
 
   confrontaPerPrezzo(p1 : Prodotto, p2 : Prodotto):number{
     return p1.prezzo - p2.prezzo;
+  }
+
+  indicePagina : number = 0;
+  prodottiPerPagina : number =3;
+
+  gestisciPaginazione(evento : PageEvent){
+    this.indicePagina = evento.pageIndex;
+    this.prodottiPerPagina = evento.pageSize;
+  }
+
+  getProdottiPaginati(){
+    return this.prodottiService
+    .getProdotti(this.categoriaSelezionata)
+    .slice(
+      this.indicePagina * this.prodottiPerPagina,
+      (this.indicePagina+1) * this.prodottiPerPagina
+    );
   }
 
 }
