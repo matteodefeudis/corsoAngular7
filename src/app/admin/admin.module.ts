@@ -6,10 +6,12 @@ import { MainComponent } from './main/main.component';
 import { ElencoProdottoComponent } from './elenco-prodotto/elenco-prodotto.component';
 import { FormProdottoComponent } from './form-prodotto/form-prodotto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GuardsModule } from '../guards/guards.module';
+import { LoginGuards } from '../guards/login.guards';
 
 const routes : Route[] = [
   {path:'login', component: LoginComponent},
-  {path:'main', component: MainComponent, children:
+  {path:'main', canActivate: [LoginGuards], component: MainComponent, children:
     [{path:'form-prodotto', component: FormProdottoComponent},
     {path:'elenco-prodotto', component: ElencoProdottoComponent}
     ]
@@ -23,7 +25,8 @@ const routes : Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GuardsModule
   ]
 })
 export class AdminModule { }

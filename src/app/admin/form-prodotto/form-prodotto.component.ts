@@ -50,6 +50,7 @@ export class FormProdottoComponent implements OnInit {
       this.svuota();
     }),(error)=>{
       this.messaggio = 'Si è verificato un errore!'
+      throw error;
     }
   }
 

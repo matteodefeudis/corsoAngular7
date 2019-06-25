@@ -37,4 +37,8 @@ export class VetrinaComponent implements OnInit {
     return this.prodottiService.getCategorie();
   }
 
+  confrontaPerPrezzo(p1 : Prodotto, p2 : Prodotto):number{
+    return p1.prezzo - p2.prezzo;
+  }
+
 }

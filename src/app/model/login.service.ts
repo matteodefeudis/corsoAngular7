@@ -10,7 +10,15 @@ import { map } from 'rxjs/operators';
 export class LoginService {
 
   private loginUrl = 'http://localhost:3000/auth';
-  private token : string;
+  //private token : string;
+
+  private set token(val){
+    localStorage.setItem('token', val);
+  }
+
+  private get token(){
+    return localStorage.getItem('token');
+  }
 
   constructor(private httpClient : HttpClient) { }
 
@@ -40,6 +48,11 @@ export class LoginService {
         Authorization: 'Bearer<'+this.token+'>'
       })
     };
+  }
+
+  utenteLoggato():boolean{
+    //Verifica utente loggato
+    return this.token!=null;
   }
 
 }

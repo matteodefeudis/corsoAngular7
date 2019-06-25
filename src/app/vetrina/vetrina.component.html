@@ -1,21 +1,56 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-2 offset-1">
-      <button class="btn btn-primary btn-block" (click)="categoriaSelezionata = null">Tutte le categorie</button>
-      <button class="btn btn-primary btn-block" 
-        (click)="categoriaSelezionata = categoria"
-        *ngFor="let categoria of categorie">
-        {{categoria}}
-      </button>
-    </div>
-    <div class="col-8">
-      <div class="card m-1" *ngFor="let prodotto of prodotti">
-        <div class="card-header">{{prodotto.nome}}</div>
-        <div class="card-body">{{prodotto.descrizione}}
-          <button class="btn btn-primary" (click)="carrello.aggiungiAlCarrello(prodotto)">Acquista</button>
-          <span class="float-right">{{prodotto.prezzo | currency:'€'}}</span>
+    <div class="row">
+      <div class="col-2 offset-1">
+        <button class="btn btn-primary btn-block" (click)="categoriaSelezionata = null">Tutte le categorie</button>
+        <button class="btn btn-primary btn-block" 
+          (click)="categoriaSelezionata = categoria"
+          *ngFor="let categoria of categorie">
+          {{categoria}}
+        </button>
+      </div>
+      <div class="col-8">
+        <div class="card m-1" *ngFor="let prodotto of prodotti">
+          <div class="card-header" [appEvidenzia]="prodotto.prezzo<50?'green':'red'"
+          coloreMouseOver="silver">{{prodotto.nome}}</div>
+          <div class="card-body">{{prodotto.descrizione | appIfNull: prodotto.nome}}
+            <button class="btn btn-primary" (click)="carrello.aggiungiAlCarrello(prodotto)">Acquista</button>
+            <span class="float-right">{{prodotto.prezzo | currency:'€'}}</span>
+            <!-- <span class="float-right">{{prodotto.prezzo | appPercentuale:90 | currency:'€'}}</span> -->
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+<hr>
+
+<!-- utilizzo esplicito della direttiva appLoop-->
+<ng-template appLoop [appLoopOf]="prodotti" let-prodotto let-i="index" let-e="even" [appLoopOrderBy]="confrontaPerPrezzo">
+  <!-- prodotto è il $implicit del LoopContext
+       i è l'indice di ciclo
+  -->
+  <div [style.backgroundColor]="e ? 'grey' : 'pink'">
+    Prodotto {{i}}:
+    {{prodotto.nome}}
+    {{e}}
+  </div>
+  <div>
+    {{prodotto.prezzo | currency:'EUR'}}
+  </div>
+</ng-template>
+
+<!-- utilizzo semplificato tramite * -->
+<hr>
+
+<div *appLoop="let prodotto of prodotti; let i = index; let e = even; orderBy : confrontaPerPrezzo">
+    <div [style.backgroundColor]="e ? 'grey' : 'pink'">
+        Prodotto {{i}}:
+        {{prodotto.nome}}
+      </div>
+      <div>
+        {{prodotto.prezzo | currency:'EUR'}}
+      </div>
 </div>
+
+<hr>
+
